@@ -1,7 +1,6 @@
 package ru.itmentor.spring.boot_security.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +19,7 @@ public class AdminController {
     private final String REDIRECT = "redirect:/admin/users";
     private final UserService userService;
     private final RoleService roleService;
+
     @Autowired
     public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
@@ -30,6 +30,7 @@ public class AdminController {
     public String adminPanel() {
         return "admin";
     }
+
     @GetMapping("/users")
     public String showAllUsers(Model model) {
         List<User> users = userService.getAllUsers();
@@ -70,6 +71,12 @@ public class AdminController {
         userService.updateUser(user);
         return REDIRECT;
     }
+    @GetMapping("/test")
+    @ResponseBody
+    public String test(){
+        return "TEST MESSAGE";
+    }
+
     @PostMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable long id, Model model) {
         userService.deleteUserById(id);

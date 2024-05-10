@@ -1,7 +1,6 @@
 package ru.itmentor.spring.boot_security.demo.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Transient;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,8 +11,6 @@ import ru.itmentor.spring.boot_security.demo.models.User;
 import ru.itmentor.spring.boot_security.demo.repository.RoleRepository;
 import ru.itmentor.spring.boot_security.demo.repository.UserRepository;
 
-import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +36,7 @@ public class UserService implements UserDetailsService {
     public User saveUser(User user) {
         return userRepository.save(user);
     }
+
     public User updateUser(User user) {
         String currentPassword = userRepository.getById(user.getId()).getPassword();
         user.setPassword(currentPassword);

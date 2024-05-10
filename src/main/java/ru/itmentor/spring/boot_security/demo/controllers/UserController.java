@@ -22,7 +22,7 @@ public class UserController {
     }
     @GetMapping("/profile")
     public String viewProfile(Model model, Principal principal) {
-        String username = principal.getName(); // Получаем имя текущего пользователя
+        String username = principal.getName();// Получаем имя текущего пользователя
         User user = userService.getUserByUsername(username); // Получаем пользователя по его имени
         model.addAttribute("user", user);
         return "user_profile"; // Возвращает страницу с профилем пользователя
